@@ -9,7 +9,7 @@ const color_other = 'rgb(73, 73, 73)';
 const color_other_pressed = 'gray';
 
 // Max decimal values shown
-const max_decimals = 10;
+const max_decimals = 8;
 
 // States
 STATE_VAR1 = 1;         // User is inputting the first operand
