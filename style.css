@@ -1,0 +1,55 @@
+body {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 500px;
+    width: 500px;
+}
+
+.display {
+    color: blue;   
+    font-size:60px; 
+    text-align: right;
+    background-color: rgb(48, 47, 47);
+    color: white;
+    font-family:Arial, Helvetica, sans-serif;
+    flex:.25 1 auto;
+    padding-right: 12px;
+    height:60px;
+    /*padding: 12px 12px 0px 0px;*/
+}
+
+.buttons {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex: 1 1 auto;
+}
+
+.row {
+    display:flex;
+    flex-direction: row;
+    flex: auto;
+}
+
+button {
+    flex: auto;
+    width: 30px;
+    font-size: 50px;
+    padding: 0px;
+    margin: 0px;
+    color: white;
+    border: solid black 1px;
+}
+
+.digit, .plusminus, .decimal {
+    background-color: gray;
+}
+
+.operator, .equals {
+    background-color: darkorange;
+}
+
+.clear, .percent, .backspace {
+    background-color: rgb(73, 73, 73);
+}
