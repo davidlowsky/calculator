@@ -101,7 +101,14 @@ function Calculator () {
 
             case ("equals"):        
                 e.target.style.backgroundColor = color_equals;
-                if (this.state == STATE_VAR2) {
+                // If user hasn't selected operator, just remove extraneous decimal / zeros.
+                if (this.state == STATE_VAR1) {
+                    this.var1 = parseFloat(this.var1);
+                    this.display.textContent = this.var1;
+                    this.state = STATE_RESULT;
+                }
+                // User has already selected operator
+                else if (this.state == STATE_VAR2) {
                     // If user hasn't defined second operand and then presses equal, assume same as first operand.
                     if (this.var2 == undefined) {
                         this.var2 = this.display.textContent;
@@ -172,11 +179,12 @@ function Calculator () {
                 break;
  
             case ("percent"):
+                e.target.style.backgroundColor = color_other;
                 if (this.operator == undefined) {
-                    this.var1 = "" + this.var1 * .01;
+                    this.var1 = (this.var1 * .01).toFixed(max_decimals);
                     this.display.textContent = this.var1;
                 } else {
-                    this.var2 = "" + this.var2 *.01;
+                    this.var2 = (this.var2 * .01).toFixed(max_decimals);
                     this.display.textContent = this.var2;
                 }
                 break;
@@ -209,11 +217,7 @@ function Calculator () {
 
     this.applyOperator = function() {
         let result = this.operators[this.operator](this.var1, this.var2);
-        let decimals = result.toString().split(".")[1];
-        if (decimals != null) {
-            result = result.toFixed(Math.min(decimals.length, max_decimals));
-        }
-        result = parseFloat(result);
+        result = +result.toFixed(max_decimals);
         this.display.textContent = result;
         // Take the result and make it the first operand so they can do additional operations with it.
         this.var1 = result;
